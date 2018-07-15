@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="cpp14.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="New_Features.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="New_Features.cpp">
+    <ClCompile Include="cpp14.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
