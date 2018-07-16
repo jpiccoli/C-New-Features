@@ -150,10 +150,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="cpp14.h" />
+    <ClInclude Include="cpp17.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cpp14.cpp" />
+    <ClCompile Include="cpp17.cpp" />
     <ClCompile Include="New_Features.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

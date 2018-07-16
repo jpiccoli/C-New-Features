@@ -42,11 +42,21 @@ constexpr int factorial( int n )
 
 void show_cpp_14_features()
 {
-  // STL C++14
-  // bit_not
-  // integer_sequence
-  // exchange
+  std::cout << '\n';
+  std::cout << "--------------\n";
+  std::cout << "C++14 features\n";
+  std::cout << "--------------\n";
 
+  auto bn = std::bit_not()(17);
+  std::cout << "bit_not() = " << bn << '\n';
+
+  auto original = 27;
+  auto replace = std::exchange( original, 29 );
+  std::cout << "std::exchange() old value = " << replace << '\n';
+  std::cout << "std::exchange() new value = " << original << '\n';
+
+  // integer_sequence
+  // Reference: https://msdn.microsoft.com/en-us/library/mt125500.aspx
 
   // Function return type deduction
   std::cout << "Deduce return type = " << deduce_return_type() << "\n\n";
