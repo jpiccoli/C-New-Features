@@ -1,4 +1,4 @@
-#include "cpp14.h"
+#include "cpp17.h"
 
 #include <algorithm>
 #include <chrono>
@@ -70,6 +70,14 @@ void show_cpp_17_features()
 
   std::cout << '\n';
 
+  std::cout << "------------------------\n";
+  std::cout << "Structured Binding\n";
+  std::cout << "------------------------\n";
+
+
+
+  std::cout << '\n';
+
   std::cout << "--------------\n";
   std::cout << "STL Algorithms\n";
   std::cout << "--------------\n";
@@ -113,6 +121,9 @@ void show_cpp_17_features()
   else
     std::cout << "std::clamp() for in range value failed\n\n";
 
+  std::cout << "--------------\n";
+  std::cout << "STL Numerics\n";
+  std::cout << "--------------\n";
   // std::reduce -> compare with std::accumulate
   std::vector<double> v( 100'000, 0.5 );
   auto t1a = std::chrono::high_resolution_clock::now();
@@ -128,21 +139,82 @@ void show_cpp_17_features()
   std::cout << std::fixed << "std::reduce = " << result2 << " took " << ms2.count() << " ms\n\n";
 
   // exclusive_scan
+  std::vector<int> scan_input{ 7, 14, 21, 30, 36, 42, 50, 56, 63 };
+  std::vector<int> scan_output;
+  auto exclusive_it = std::exclusive_scan( scan_input.begin() + 2, scan_input.end() - 2, std::back_inserter( scan_output ), 0 );
+  if( scan_output.size() == 5 )
+  {
+    std::cout << "exclusive_output() #1 passed\n";
+    if( scan_output[ 0 ] == 0 && scan_output[ 1 ] == 21 && scan_output[ 2 ] == 51 && scan_output[ 3 ] == 87 && scan_output[ 4 ] == 129 )
+      std::cout << "exclusive_output() #2 passed\n";
+    else
+      std::cout << "exclusive_output() #2 passed\n";
+  }
+  else
+    std::cout << "exclusive_output() #1 failed\n";
+
+  std::cout << '\n';
+
+  scan_output.clear();
+
   // inclusive_scan
+  auto inclusive_it = std::inclusive_scan( scan_input.begin() + 2, scan_input.end() - 2, std::back_inserter( scan_output ) );
+  if( scan_output.size() == 5 )
+  {
+    std::cout << "inclusive_output() #1 passed\n";
+    if( scan_output[0] == 21 && scan_output[1]== 51 && scan_output[2] == 87 && scan_output[3] == 129 && scan_output[4] == 179 )
+      std::cout << "inclusive_output() #2 passed\n";
+    else
+      std::cout << "inclusive_output() #2 passed\n";
+  }
+  else
+    std::cout << "inclusive_output() #1 failed\n";
+
+  std::cout << '\n';
+
   // transform_reduce
   // transform_exclusive_scan
   // transform_inclusive_scan
 
+  // gcd
+  auto gcd_value = std::gcd( 42, 70 );
+  if( gcd_value == 14 )
+    std::cout << "std::gcd() passed\n\n";
+  else
+    std::cout << "std::gcd() failed\n\n";
 
-  // Functional
+  // lcm
+  auto lcm_value = std::lcm( 6, 15 );
+  if( lcm_value == 30 )
+    std::cout << "std::lcm() passed\n\n";
+  else
+    std::cout << "std::lcm() failed\n\n";
+
+  std::cout << "--------------\n";
+  std::cout << "STL Functional\n";
+  std::cout << "--------------\n";
+
   // invoke
   // not_fn
 
+  // default_searcher
+  std::string in = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+    " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua";
+  std::string needle = "pisci";
+  auto it = std::search( in.begin(), in.end(),
+    std::default_searcher(
+      needle.begin(), needle.end() ) );
+  if( it != in.end() )
+    std::cout << "The string " << needle << " found at offset "
+    << it - in.begin() << "\n\n";
+  else
+    std::cout << "The string " << needle << " not found\n\n";
+
+  // boyer_moore_searcher
+  // boyer_moore_horspool_searcher
+
   // Utility
   // byte
-  // default_searcher
-  // boyer_moore
-  // boyer_more_horspool
   // apply
   // make_from_tuple
   // to_chars
